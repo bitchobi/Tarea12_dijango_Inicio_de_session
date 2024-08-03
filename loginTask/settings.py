@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from .local_settings import SECRET_KEY as CLAVE
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,13 +21,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_vn%bn*zjpn)j50h@xt6_kh=thv4%p9zh@!4ux2=+ughak7oq7'
+SECRET_KEY = CLAVE
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_REDIRECT_URL = '/tasks/'
+LOGOUT_REDIRECT_URL = 'login'
+AUTH_USER_MODEL = 'accounts.CustomUser'
+LOGIN_URL = '/accounts/login/'
 
 # Application definition
 
@@ -38,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tasks.apps.TasksConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -77,7 +83,7 @@ WSGI_APPLICATION = 'loginTask.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'login_task',
+        'NAME': 'chobi',
         'USER': 'sample_user',
         'PASSWORD': 'password',
         'HOST': 'localhost',
@@ -108,9 +114,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'ja'
+LANGUAGE_CODE = 'es'
 
-TIME_ZONE = 'Asia/Tokyo'
+TIME_ZONE = 'America/Asuncion'
 
 USE_I18N = True
 
